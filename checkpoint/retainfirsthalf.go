@@ -42,7 +42,7 @@ func RetainFirstHalf(str string) string {
 	firsthalf := ""
 	mid := len(str) / 2
 	for i := 0; i < mid; i++ {
-		firsthalf += string(str[0])
+		firsthalf += string(str[i])
 	}
 	return firsthalf
 }
