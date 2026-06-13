@@ -19,8 +19,6 @@
 
 // Expected function
 
-
-
 // Usage
 
 // Here is a possible program to test your function:
@@ -52,19 +50,41 @@
 
 package main
 
-func CamelToSnakeCase(s string) string{
+import (
+	"fmt"
+	"unicode"
+)
+
+func CamelToSnakeCase(s string) string {
 	if s == "" {
 		return ""
 	}
-	runes:= []rune(s)
-	for i,r:= range s {
-		
-	if !unicode.IsLetter(ch) {
-		return s
-	}
-	if (s[i] >= 'A' &&  s[i] <= 'Z') && (s[i+1] >= 'A' &&  s[i] <= 'Z') {
-		s[]
-	}
-	}
+	var result []rune
+	runes := []rune(s)
+	for i, r := range runes {
+		if i == len(runes)-1 && unicode.IsUpper(runes[i]) {
+			return s
+		}
+		if !unicode.IsLetter(r) {
+			return s
+		}
+		// if i < len(runes)-1 && (unicode.IsUpper(runes[i])) && (unicode.IsUpper(runes[i+1])) { // manual thinking to handle consecutive uppercae letters
+		// 	runes[i] = runes[i] + ('a' - 'A')
+		// }
+		if i > 0 && (unicode.IsLower(runes[i-1])) && (unicode.IsUpper(runes[i])) { // places underscore just before the index under consideration
+			result = append(result, '_')
+		}
+		result = append(result, runes[i])
 
 	}
+	return string(result)
+}
+func main() {
+	fmt.Println(CamelToSnakeCase("HelloWorld"))
+	fmt.Println(CamelToSnakeCase("helloWorld"))
+	fmt.Println(CamelToSnakeCase("camelCase"))
+	fmt.Println(CamelToSnakeCase("CAMELtoSnackCASE"))
+	fmt.Println(CamelToSnakeCase("CAMELtoSnackCASe"))
+	fmt.Println(CamelToSnakeCase("camelToSnakeCase"))
+	fmt.Println(CamelToSnakeCase("hey2"))
+}
