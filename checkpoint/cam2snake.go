@@ -71,10 +71,10 @@ func CamelToSnakeCase(s string) string {
 		// if i < len(runes)-1 && (unicode.IsUpper(runes[i])) && (unicode.IsUpper(runes[i+1])) { // manual thinking to handle consecutive uppercae letters
 		// 	runes[i] = runes[i] + ('a' - 'A')
 		// }
-		if i > 0 && (unicode.IsLower(runes[i-1])) && (unicode.IsUpper(runes[i])) { // places underscore just before the index under consideration
+		if i > 0 && (unicode.IsLower(runes[i-1])) && (unicode.IsUpper(r)) { // places underscore just before the index under consideration
 			result = append(result, '_')
 		}
-		result = append(result, runes[i])
+		result = append(result, (r))
 
 	}
 	return string(result)
